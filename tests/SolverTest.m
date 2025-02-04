@@ -8,7 +8,7 @@ classdef SolverTest < matlab.unittest.TestCase
             
         end
         function imaginarySolution(testCase)
-            actSolution = quadraticSolver(1,2,10);
+            actSolution = quadraticSolver(1,2,10)+10;
             expSolution = [-1+3i -1-3i];
             testCase.verifyEqual(actSolution,expSolution)
         end

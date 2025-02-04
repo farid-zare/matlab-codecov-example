@@ -1,8 +1,12 @@
 name: Example
-on: push
+on:
+  pull_request:
+    branches:
+      - main  
+      - develop
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - uses: actions/checkout@v4
       - uses: matlab-actions/setup-matlab@v2
@@ -13,4 +17,9 @@ jobs:
       - uses: codecov/codecov-action@v4
         with:
           file: coverage.xml
+          token: ${{ secrets.CODECOV_TOKEN }}
+      - name: Upload test results to Codecov
+        if: ${{ !cancelled() }}
+        uses: codecov/test-results-action@v1
+        with:
           token: ${{ secrets.CODECOV_TOKEN }}

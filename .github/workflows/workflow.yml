@@ -22,11 +22,7 @@ jobs:
         with:
           report-path: './ctrf/ctrf-report.json'
           summary-report: true
-          previous-results-report: true
-          flaky-rate-report: true
-          fail-rate-report: true
           pull-request-report: true
-          upload-artifact: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         if: always()

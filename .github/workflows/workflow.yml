@@ -1,6 +1,6 @@
 name: Example
 on:
-  pull_request:
+  pull_request_target:
     branches:
       - main  
       - develop
@@ -11,7 +11,16 @@ jobs:
       - uses: actions/checkout@v4
       - uses: matlab-actions/setup-matlab@v2
 
-      - name: Upload test results to Codecov
-        uses: codecov/test-results-action@v1
+      # Add your test execution step here (e.g., run MATLAB tests generating JUnit XML)
+
+      - name: Convert JUnit to CTRF
+        run: npx junit-to-ctrf path/to/junit.xml -o ./ctrf/ctrf-report.json
+
+      # Optional: Use the CTRF report with GitHub Test Reporter
+      - name: Publish Test Report
+        uses: ctrf-io/github-test-reporter@v1
         with:
-          token: ${{ secrets.CODECOV_TOKEN }}
+          report-path: './ctrf/ctrf-report.json'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        if: always()

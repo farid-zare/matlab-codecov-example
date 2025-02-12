@@ -1,8 +1,5 @@
 name: Example
 on:
-  push:
-    branches:
-      - '**'
   pull_request_target:
     types: [opened, synchronize, reopened]
   

@@ -40,5 +40,6 @@ jobs:
         with:
           report-path: 'artifacts/ctrf-report.json'
           issue: ${{ env.PR_NUMBER }}
+          summary: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -39,7 +39,12 @@ jobs:
         uses: ctrf-io/github-test-reporter@v1.0.5
         with:
           report-path: 'artifacts/ctrf-report.json'
-          issue: ${{ env.PR_NUMBER }}
           community-report-name: 'summary-short'
+          test-report: false
+          test-list-report: false
+          flaky-report: false
+          skipped-report: false
+          issue: ${{ env.PR_NUMBER }}
+
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

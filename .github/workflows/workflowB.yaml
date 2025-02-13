@@ -26,8 +26,8 @@ jobs:
         uses: ctrf-io/github-test-reporter@v1.0.5
         with:
           report-path: 'artifacts/ctrf-report.json'
-          pull-request-report: true
-          #issue: ${{ github.event.workflow_run.pull_requests[0].number }}
+          #pull-request-report: true
+          issue: ${{ github.event.workflow_run.pull_requests[0].number }}
           #summary-report: true
           #annotate: true
         env:

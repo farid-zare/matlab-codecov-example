@@ -17,7 +17,7 @@ jobs:
       - name: Download CTRF Artifact
         uses: actions/download-artifact@v4
         with:
-          # name: ctrf-report
+          #name: ctrf-report
           run-id: ${{ github.event.workflow_run.id }}
           path: artifacts
           # repository: ${{ github.repository }}
@@ -26,7 +26,7 @@ jobs:
         uses: ctrf-io/github-test-reporter@v1.0.5
         with:
           # Where the CTRF report is located after download
-          report-path: './ctrf-report.json'
+          report-path: 'artifacts/ctrf-report.json'
 
           # We are posting to the PR as an "issue", so set pull-request = false
           pull-request: false

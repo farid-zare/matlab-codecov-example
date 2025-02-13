@@ -17,7 +17,7 @@ jobs:
       - name: Download CTRF Artifact
         uses: actions/download-artifact@v4
         with:
-          #name: ctrf-report
+          name: ctrf-report
           run-id: ${{ github.event.workflow_run.id }}
           path: artifacts
           # repository: ${{ github.repository }}

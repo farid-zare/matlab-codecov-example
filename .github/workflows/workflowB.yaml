@@ -14,15 +14,11 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.workflow_run.conclusion == 'success'
     steps:
-      - name: Debug List Available Artifacts in Workflow Run
-        run: gh run view ${{ github.event.workflow_run.id }} --json artifacts --jq '.artifacts'
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
+    
       - name: Download CTRF Artifact
         uses: actions/download-artifact@v4
         with:
-          name: ctrf-report.json  # Ensure this matches the name used in Workflow A
+          name: ctrf-report  # Ensure this matches the name used in Workflow A
           run-id: ${{ github.event.workflow_run.id }}
           path: artifacts
 

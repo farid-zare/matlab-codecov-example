@@ -39,7 +39,15 @@ jobs:
         uses: ctrf-io/github-test-reporter@v1.0.5
         with:
           report-path: 'artifacts/ctrf-report.json'          
-          summary-report: true
+          community-report: true
+          community-report-name: 'summary-short'
+          issue: ${{ env.PR_NUMBER }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Publish Test Report
+        uses: ctrf-io/github-test-reporter@v1.0.5
+        with:
+          report-path: 'artifacts/ctrf-report.json'          
           failed-report: true
           issue: ${{ env.PR_NUMBER }}
         env:

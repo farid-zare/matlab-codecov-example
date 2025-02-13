@@ -1,4 +1,4 @@
-name: Example
+name: testReport
 on:
   pull_request_target:
     types: [opened, synchronize, reopened]
@@ -7,16 +7,12 @@ on:
 permissions:
   contents: write
   pull-requests: write
-
+  
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout PR branch
-        uses: actions/checkout@v4
-        with:
-          ref: refs/pull/${{ github.event.pull_request.number }}/merge
-          token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/checkout@v4
 
       # Add your test execution step here (e.g., run MATLAB tests generating JUnit XML)
 
@@ -25,7 +21,7 @@ jobs:
 
       # Optional: Use the CTRF report with GitHub Test Reporter
       - name: Publish Test Report
-        uses: ctrf-io/github-test-reporter@v1
+        uses: ctrf-io/github-test-reporter@v1.0.5
         with:
           report-path: './ctrf/ctrf-report.json'
           pull-request-report: true

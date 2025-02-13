@@ -5,7 +5,6 @@ on:
     types: [opened, synchronize, reopened]
   workflow_dispatch:
 
-# Only read permissions are needed here, which is safer for forks.
 permissions:
   contents: read
 
@@ -15,11 +14,9 @@ jobs:
     steps:
       - name: Check out merged PR code
         uses: actions/checkout@v4
-        # By default, `pull_request` checks out the merged commit.
 
       - name: Convert JUnit to CTRF
         run: |
-          # Example command
           npx junit-to-ctrf ./test.junit.xml -o ./ctrf/ctrf-report.json
 
       - name: Upload CTRF Artifact
@@ -27,4 +24,16 @@ jobs:
         with:
           name: testReport
           path: ./ctrf/ctrf-report.json
-  
+
+      - name: Save PR Number
+        run: echo "PR_NUMBER=${{ github.event.pull_request.number }}" >> $GITHUB_ENV
+
+      - name: Upload PR Number as Artifact
+        run: echo $PR_NUMBER > pr_number.txt
+        shell: bash
+
+      - name: Upload PR Number Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: pr_number
+          path: pr_number.txt

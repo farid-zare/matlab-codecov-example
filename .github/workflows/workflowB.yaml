@@ -16,11 +16,11 @@ jobs:
     steps:
     
       - name: Download CTRF Artifact
-        uses: actions/download-artifact@v4
+        uses: dawidd6/action-download-artifact@v8
         with:
           name: testReport  # Ensure this matches the name used in Workflow A
           run-id: ${{ github.event.workflow_run.id }}
-          path: ./downloaded-artifact
+          path: artifacts
 
       - name: Display Artifact Contents
         run: cat ./downloaded-artifact/artifact.txt

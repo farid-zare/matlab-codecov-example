@@ -21,6 +21,9 @@ jobs:
           run-id: ${{ github.event.workflow_run.id }}
           path: artifacts
           # repository: ${{ github.repository }}
+          
+      - name: Debug List Downloaded Files
+        run: ls -R artifacts
 
       - name: Publish Test Report
         uses: ctrf-io/github-test-reporter@v1.0.5

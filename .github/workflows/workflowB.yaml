@@ -17,9 +17,10 @@ jobs:
       - name: Download CTRF Artifact
         uses: actions/download-artifact@v4
         with:
-          name: ctrf-report
+          # name: ctrf-report
           run-id: ${{ github.event.workflow_run.id }}
-          repository: ${{ github.repository }}
+          path: artifacts
+          # repository: ${{ github.repository }}
 
       - name: Publish Test Report
         uses: ctrf-io/github-test-reporter@v1.0.5

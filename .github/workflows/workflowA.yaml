@@ -1,0 +1,29 @@
+name: testReport (Test Merge)
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+  workflow_dispatch:
+
+# Only read permissions are needed here, which is safer for forks.
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out merged PR code
+        uses: actions/checkout@v4
+        # By default, `pull_request` checks out the merged commit.
+
+      - name: Convert JUnit to CTRF
+        run: |
+          # Example command
+          npx junit-to-ctrf ./test.junit.xml -o ./ctrf/ctrf-report.json
+
+      - name: Upload CTRF Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: ctrf-report
+          path: ./ctrf/ctrf-report.json

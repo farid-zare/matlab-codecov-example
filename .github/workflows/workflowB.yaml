@@ -19,6 +19,7 @@ jobs:
         with:
           name: ctrf-report
           run-id: ${{ github.event.workflow_run.id }}
+          repository: ${{ github.repository }}
 
       - name: Publish Test Report
         uses: ctrf-io/github-test-reporter@v1.0.5

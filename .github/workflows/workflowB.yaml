@@ -48,7 +48,8 @@ jobs:
         uses: ctrf-io/github-test-reporter@v1.0.5
         with:
           report-path: 'artifacts/ctrf-report.json'          
-          failed-report: true
+          template-path: './matlab-codecov-example/.github/templates/cobra-report.hbs'
+          custom-report: true
           issue: ${{ env.PR_NUMBER }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

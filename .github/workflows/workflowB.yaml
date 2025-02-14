@@ -48,7 +48,7 @@ jobs:
         uses: ctrf-io/github-test-reporter@v1.0.5
         with:
           report-path: 'artifacts/ctrf-report.json'          
-          template-path: './.github/templates/cobra-report.hbs'
+          template-path: './templates/cobra-report.hbs'
           custom-report: true
           issue: ${{ env.PR_NUMBER }}
         env:

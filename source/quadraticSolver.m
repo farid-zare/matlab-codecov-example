@@ -4,6 +4,7 @@ function roots = quadraticSolver(a,b,c)
 % Copyright 2021 The MathWorks, Inc.
 
 
+
 if ~isa(a,'numeric') || ~isa(b,'numeric') || ~isa(c,'numeric')
     error('quadraticSolver:InputMustBeNumeric', ...
         'Coefficients must be numeric.');
